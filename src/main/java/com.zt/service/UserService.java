@@ -1,6 +1,7 @@
 package com.zt.service;
 
 import com.zt.entity.User;
+import com.zt.entity.Wallet;
 import com.zt.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,17 @@ public class UserService {
         else if (!user.getUserPwd().equals(pwd))
             return 1;
         return  2;
+    }
+
+    public  User getUserByName(String name){
+        return userMapper.getUserByName(name);
+    }
+
+    public Wallet getWalletByName(String name){
+        return userMapper.getWalletByName(name);
+    }
+
+    public int addUser(User user){
+        return userMapper.addUser(user);
     }
 }
