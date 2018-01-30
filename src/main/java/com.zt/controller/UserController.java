@@ -44,7 +44,7 @@ public class UserController {
         User user=userService.getUserByName(name);
         if (user!=null){    //检查用户存在
             map.put("flag",false);
-            map.put("msg","userExisted");
+            map.put("msg","userUnexisted");
         }else  if (user==null){     //检查用户不存在
             User user1=new User();
             user1.setUserName(name);
@@ -67,4 +67,6 @@ public class UserController {
 
         return map;
     }
+
+
 }

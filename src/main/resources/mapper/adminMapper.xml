@@ -8,5 +8,12 @@
         SELECT * FROM admin WHERE adminName=#{name}
     </select>
 
+    <insert id="addProduct" parameterType="FruitCategory">
+        INSERT INTO fruit_category(fruitName,unitPrice,introduction,iconUrl)VALUES (#{fruitName},#{unitPrice},#{introduction},#{iconUrl})
+    </insert>
+
+    <select id="getFruitByName" parameterType="java.lang.String" resultType="FruitCategory">
+        SELECT * FROM fruit_category WHERE fruitName=#{name}
+    </select>
 
 </mapper>

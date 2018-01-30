@@ -1,6 +1,7 @@
 package com.zt.service;
 
 import com.zt.entity.Admin;
+import com.zt.entity.FruitCategory;
 import com.zt.mapper.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,12 @@ public class AdminService {
         HttpSession httpSession=request.getSession();
         httpSession.setAttribute("adminSession",admin);
         return 2;
+    }
+
+    public int addProduct(FruitCategory fruitCategory){
+        return adminMapper.addProduct(fruitCategory);
+    }
+    public FruitCategory getFruitByName(String name){
+        return adminMapper.getFruitByName(name);
     }
 }
