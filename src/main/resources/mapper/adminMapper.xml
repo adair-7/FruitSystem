@@ -16,4 +16,46 @@
         SELECT * FROM fruit_category WHERE fruitName=#{name}
     </select>
 
+    <!--分页查询所有水果-->
+    <select id="getAllFruitByPage" parameterType="java.lang.Integer" resultType="FruitCategory">
+        SELECT  * FROM  fruit_category
+         limit #{beginRow},#{pageSize}
+    </select>
+    <!--查询水果总数-->
+    <select id="getAllfruitCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM fruit_category
+    </select>
+    <!--模糊查询-->
+    <select id="getFruitByKey" parameterType="java.lang.String" resultType="FruitCategory">
+        SELECT * FROM fruit_category
+        <where>
+            <if test="_parameter!=null">
+                AND fruitName LIKE "%"#{_parameter}"%"
+            </if>
+        </where>
+    </select>
+
+    <!--分页模糊查询-->
+    <select id="getFruitByPage" parameterType="java.lang.String" resultType="FruitCategory">
+        SELECT * FROM fruit_category
+        <where>
+            <if test="name!=null">
+                AND fruitName LIKE "%"#{name}"%"
+            </if>
+        </where>
+        limit #{beginRow},#{pageSize}
+    </select>
+    <!--查询分页总行数-->
+    <select id="getTotalRows" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM fruit_category
+        <where>
+            <if test="_parameter!=null">
+                AND fruitName LIKE "%"#{_parameter}"%"
+            </if>
+        </where>
+    </select>
+    <!---->
+    <select id="getFruitById" resultType="FruitCategory">
+        SELECT * FROM fruit_category WHERE fruitId=#{id}
+    </select>
 </mapper>

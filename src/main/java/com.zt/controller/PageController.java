@@ -21,5 +21,9 @@ public class PageController {
         return  "productSearch";
     }
 
+    @RequestMapping("/productUp")
+    public String productUp(){
+        return "productUp";
+    }
 
 }

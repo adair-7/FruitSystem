@@ -118,21 +118,21 @@
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="37" parent="14" name="orderData">
-      <Position>5</Position>
-      <DataType>timestamp|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
-    </column>
-    <column id="38" parent="14" name="fruitNum">
+    <column id="37" parent="14" name="fruitNum">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="39" parent="14" name="orderPrice">
+    <column id="38" parent="14" name="orderPrice">
       <Position>7</Position>
       <DataType>decimal(10)|0</DataType>
       <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="14" name="orderDate">
+      <Position>5</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
     <key id="40" parent="14" name="PRIMARY">
       <ColNames>orderId</ColNames>

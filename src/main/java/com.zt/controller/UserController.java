@@ -29,7 +29,7 @@ public class UserController {
         map.put("flag",true);
         map.put("msg","success");
         map.put("code",loginCode);
-        if (loginCode==2){
+        if (loginCode==1){
             map.put("user",userService.getUserByName(name));
             map.put("wallet",userService.getWalletByName(name));
         }
@@ -43,8 +43,9 @@ public class UserController {
         Map<String,Object> map=new HashMap<String, Object>();
         User user=userService.getUserByName(name);
         if (user!=null){    //检查用户存在
+            map.put("code",2);
             map.put("flag",false);
-            map.put("msg","userUnexisted");
+            map.put("msg","userExisted");
         }else  if (user==null){     //检查用户不存在
             User user1=new User();
             user1.setUserName(name);

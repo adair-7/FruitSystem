@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by admin on 2018/1/15.
@@ -29,11 +31,36 @@ public class AdminService {
         httpSession.setAttribute("adminSession",admin);
         return 2;
     }
-
+    //添加产品
     public int addProduct(FruitCategory fruitCategory){
         return adminMapper.addProduct(fruitCategory);
     }
+    //根据产品名获取产品
     public FruitCategory getFruitByName(String name){
         return adminMapper.getFruitByName(name);
+    }
+    //分页获取所有产品
+    public List<FruitCategory> getAllFruitByPage(int beginRow,int pageSize){
+        return adminMapper.getAllFruitByPage(beginRow,pageSize);
+    }
+    //获取所有产品数量
+    public int getAllfruitCount(){
+        return adminMapper.getAllfruitCount();
+    }
+    //模糊查询产品
+    public List<FruitCategory> getFruitByKey(String name){
+        return adminMapper.getFruitByKey(name);
+    }
+    //分页模糊查询
+    public List<FruitCategory> getFruitByPage(String name,int beginRow,int pageSize){
+        return adminMapper.getFruitByPage(name,beginRow,pageSize);
+    }
+    //查询分页产品数量
+    public int getTotalRows(String name){
+        return adminMapper.getTotalRows(name);
+    }
+    //根据id获取产品
+    public FruitCategory getFruitById(int id){
+        return adminMapper.getFruitById(id);
     }
 }

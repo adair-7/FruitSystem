@@ -7,9 +7,18 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class FruitStock {
+    private  int fruitId;
     private String fruitName;
     private int stockTop;
     private int stockAccount;
+
+    public int getFruitId() {
+        return fruitId;
+    }
+
+    public void setFruitId(int fruitId) {
+        this.fruitId = fruitId;
+    }
 
     public String getFruitName() {
         return fruitName;
@@ -38,7 +47,8 @@ public class FruitStock {
     @Override
     public String toString() {
         return "FruitStock{" +
-                "fruitName='" + fruitName + '\'' +
+                "fruitId=" + fruitId +
+                ", fruitName='" + fruitName + '\'' +
                 ", stockTop=" + stockTop +
                 ", stockAccount=" + stockAccount +
                 '}';

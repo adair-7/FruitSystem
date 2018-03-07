@@ -29,14 +29,14 @@
 
             <div>
                 <form enctype="multipart/form-data">
-                    <input type="text" id="fruitName" placeholder="水果名称"  /> <br>
-                    <input type="text" id="unitPrice" placeholder="水果单价" /> <br>
-                    <textarea id="introduction" rows="10"placeholder="水果介绍" ></textarea><br>
+                    水果名称：<input type="text" id="fruitName" placeholder=""  /> <br>
+                    水果单价：<input type="text" id="unitPrice" placeholder="" /> <br>
+                    相关简介：<textarea id="introduction" rows="10"placeholder="" ></textarea><br>
+                    图片：<img style="width: 200px;height: auto" id="img"><br>
                     <input type="file" id="file"  name="file" /><br>
                     <button type="button" id="submit" class="btn btn-primary">确认</button>
 
                 </form>
-                <label id="info-panel"></label>
 
             </div>
 

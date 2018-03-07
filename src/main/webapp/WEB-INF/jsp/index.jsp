@@ -32,7 +32,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="../jsp/index.jsp"><span>订购管理系统</span></a>
+            <a class="brand" href="../Admin/goIndex"><span>订购管理系统</span></a>
 
             <!-- start: Header Menu -->
             <div class="nav-no-collapse header-nav">

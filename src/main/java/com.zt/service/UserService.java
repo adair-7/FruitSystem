@@ -16,14 +16,14 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    //登录校验，返回状态码：用户不存在0，密码错误1，登陆成功2
+    //登录校验，返回状态码：用户不存在0，登陆成功1，密码错误2
     public  int getLoginCode(String name, String pwd){
         User user=userMapper.getUserByName(name);
         if (user==null)
             return 0;
         else if (!user.getUserPwd().equals(pwd))
-            return 1;
-        return  2;
+            return 2;
+        return  1;
     }
 
     public  User getUserByName(String name){

@@ -8,10 +8,19 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Component
 public class FruitCategory {
+    private int fruitId;
     private String fruitName;
     private float unitPrice;
     private String introduction;
     private String iconUrl;
+
+    public int getFruitId() {
+        return fruitId;
+    }
+
+    public void setFruitId(int fruitId) {
+        this.fruitId = fruitId;
+    }
 
     public String getFruitName() {
         return fruitName;
@@ -48,7 +57,8 @@ public class FruitCategory {
     @Override
     public String toString() {
         return "FruitCategory{" +
-                "fruitName='" + fruitName + '\'' +
+                "fruitId=" + fruitId +
+                ", fruitName='" + fruitName + '\'' +
                 ", unitPrice=" + unitPrice +
                 ", introduction='" + introduction + '\'' +
                 ", iconUrl='" + iconUrl + '\'' +

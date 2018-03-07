@@ -29,76 +29,50 @@
         <a href="../Admin/goIndex">主页</a>
         <i class="icon-angle-right"></i>
     </li>
-    <li><a>产品新增</a></li>
+    <li><a>产品查询</a></li>
 </ul>
 
 <div>
     <form>
-        <input type="text" id="fruitName" placeholder="水果名称" /> <br>
-        <input type="text" id="unitPrice" placeholder="水果单价" /> <br>
-        <textarea id="introduction" rows="10"placeholder="水果介绍" ></textarea><br>
-        <input type="file" id="iconUrl" /><br>
-        <button class="btn btn-primary">确认</button>
+        <div class="input-group">
+            <input type="text" class="form-control" id="fruit_name"/>
+            <a href="#" class="btn btn-primary" id="fruit_search">搜索</a>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>水果名称</th>
+                <th>水果价格</th>
+                <th>介绍</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+
+            </tbody>
+        </table>
+        <ul class="pager" id="pageNum">
+            <li><a href="#" id="pre">上一页</a></li>
+            <li ><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#">12</a></li>
+            <li><a href="#">13</a></li>
+            <li><a href="#" id="next">下一页</a></li>
+        </ul>
 
     </form>
 
 </div>
 
+
 <!--/.fluid-container-->
 <!-- start: JavaScript-->
-
-<script src="../assets/js/jquery-1.9.1.min.js"></script>
-<script src="../assets/js/jquery-migrate-1.0.0.min.js"></script>
-
-<script src="../assets/js/jquery-ui-1.10.0.custom.min.js"></script>
-
-<script src="../assets/js/jquery.ui.touch-punch.js"></script>
-
-<script src="../assets/js/modernizr.js"></script>
-
-<script src="../assets/js/bootstrap.min.js"></script>
-
-<script src="../assets/js/jquery.cookie.js"></script>
-
-<script src='../assets/js/fullcalendar.min.js'></script>
-
-<script src='../assets/js/jquery.dataTables.min.js'></script>
-
-
-<script src="../assets/js/jquery.chosen.min.js"></script>
-
-<script src="../assets/js/jquery.uniform.min.js"></script>
-
-<script src="../assets/js/jquery.cleditor.min.js"></script>
-
-<script src="../assets/js/jquery.noty.js"></script>
-
-<script src="../assets/js/jquery.elfinder.min.js"></script>
-
-<script src="../assets/js/jquery.raty.min.js"></script>
-
-
-<script src="../assets/js/jquery.uploadify-3.1.min.js"></script>
-
-<script src="../assets/js/jquery.gritter.min.js"></script>
-
-<script src="../assets/js/jquery.imagesloaded.js"></script>
-
-<script src="../assets/js/jquery.masonry.min.js"></script>
-
-<script src="../assets/js/jquery.knob.modified.js"></script>
-
-<script src="../assets/js/jquery.sparkline.min.js"></script>
-
-<script src="../assets/js/counter.js"></script>
-
-<script src="../assets/js/retina.js"></script>
-
-<script src="../assets/js/custom.js"></script>
-
-<script src="../asset/js/loadPage.js"></script>
+<script src="../assets/ajax/productSearch.js"></script>
 <!-- end: JavaScript-->
 
 </body>
 </html>
-
