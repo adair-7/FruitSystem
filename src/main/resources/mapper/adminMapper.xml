@@ -58,4 +58,8 @@
     <select id="getFruitById" resultType="FruitCategory">
         SELECT * FROM fruit_category WHERE fruitId=#{id}
     </select>
+
+    <update id="updateFruit" parameterType="FruitCategory">
+        UPDATE fruit_category SET unitPrice=#{unitPrice},introduction=#{introduction},iconUrl=#{iconUrl} WHERE fruitName=#{fruitName}
+    </update>
 </mapper>

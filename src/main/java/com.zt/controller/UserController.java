@@ -20,6 +20,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /*
+    * ResponseBody
+    * */
     //返回登录校验
     @RequestMapping("/loginCheck")
     @ResponseBody

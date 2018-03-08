@@ -29,6 +29,9 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    /*
+    * Response ModelAndView
+    * */
     //登录
     @RequestMapping("/goLogin")
     public String goLogin(){
@@ -51,6 +54,18 @@ public class AdminController {
         return modelAndView;
     }
 
+    //产品更新
+    @RequestMapping("/{id}/productUp")
+    public ModelAndView productUp(@PathVariable int id){
+        ModelAndView modelAndView=new ModelAndView("productUp");
+        FruitCategory fruitCategory=adminService.getFruitById(id);
+        modelAndView.addObject("fruit",fruitCategory);
+        return  modelAndView;
+    }
+
+    /*
+    * ResponseBody
+    * */
     //返回登录校验
     @RequestMapping("/loginCheck")
     @ResponseBody
@@ -76,27 +91,7 @@ public class AdminController {
         }else if (fruitCategory==null){ //水果种类不存在
             //上传图片
             //文件保存在数据库的路径
-            String sqlPath=null;
-            //文件保存在本地的路径
-            String localPath="G:\\FruitSystem\\src\\main\\webapp\\assets\\images\\";
-            //文件名
-            String filename=null;
-            if (!file.isEmpty()){
-                //生成uuid作为文件名称
-                String uuid= UUID.randomUUID().toString().replaceAll("-","");
-                //获得文件类型（可以判断如果不是图片，禁止上传）
-                String contentType=file.getContentType();
-                //获得文件后缀名
-                String suffixName=contentType.substring(contentType.indexOf("/")+1);
-                //得到文件名
-                filename=uuid+"."+suffixName;
-                //System.out.println(filename);
-                //创建并保存文件
-                file.transferTo(new File(localPath+filename));
-            }
-            //把图片的相对路径保存至数据库
-            sqlPath="../assets/images/"+filename;
-            System.out.println(sqlPath);
+            String sqlPath="../assets/images/"+getFileName(file);
 
             FruitCategory fruitCategory1=new FruitCategory();
             fruitCategory1.setFruitName(fruitName);
@@ -138,11 +133,64 @@ public class AdminController {
         return map;
     }
 
-    @RequestMapping("/{id}/productUp")
-    public ModelAndView productUp(@PathVariable int id){
-        ModelAndView modelAndView=new ModelAndView("productUp");
-        FruitCategory fruitCategory=adminService.getFruitById(id);
-        modelAndView.addObject("fruit",fruitCategory);
-        return  modelAndView;
+    //产品更新
+    @RequestMapping("/productUp")
+    @ResponseBody
+    public Map<String,Object> productUp(String fruitName,String introduction,String unitPrice,MultipartFile file,HttpServletRequest request) throws IOException {
+        Map<String,Object> map=new HashMap<String, Object>();
+        String sqlPath="../assets/images/"+getFileName(file);
+        FruitCategory fruitCategory=new FruitCategory();
+        fruitCategory.setFruitName(fruitName);
+        fruitCategory.setUnitPrice(Float.parseFloat(unitPrice));
+        fruitCategory.setIntroduction(introduction);
+        fruitCategory.setIconUrl(sqlPath);
+        int code=adminService.updateFruit(fruitCategory);
+        if (code>0){
+            map.put("code",code);
+            map.put("msg","success");
+            map.put("flag",true);
+        }else {
+            map.put("code", code);
+            map.put("msg", "failed");
+            map.put("flag", false);
+        }
+        return map;
+    }
+    //用户查询
+    @RequestMapping("/quaryUser")
+    @ResponseBody
+    public Map<String,Object> quaryUser(int pageIndex,int pageSize,String name,HttpServletRequest request ){
+        Map<String,Object> map=new HashMap<String, Object>();
+        if ("".equals(name)){
+
+        }else {
+
+        }
+        return map;
+    }
+
+    /*
+    * method
+    * 图片存放服务器并返回文件名
+    * */
+    public String getFileName(MultipartFile file) throws IOException {
+        //文件保存在本地的路径
+        String localPath="G:\\FruitSystem\\src\\main\\webapp\\assets\\images\\";
+        //文件名
+        String filename=null;
+        if (!file.isEmpty()){
+            //生成uuid作为文件名称
+            String uuid= UUID.randomUUID().toString().replaceAll("-","");
+            //获得文件类型（可以判断如果不是图片，禁止上传）
+            String contentType=file.getContentType();
+            //获得文件后缀名
+            String suffixName=contentType.substring(contentType.indexOf("/")+1);
+            //得到文件名
+            filename=uuid+"."+suffixName;
+            //System.out.println(filename);
+            //创建并保存文件
+            file.transferTo(new File(localPath+filename));
+        }
+        return filename;
     }
 }

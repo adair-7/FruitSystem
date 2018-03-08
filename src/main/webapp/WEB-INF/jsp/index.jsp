@@ -151,7 +151,7 @@
 <!-- start: JavaScript-->
 
 <script src="../assets/js/jquery-1.9.1.min.js"></script>
-<script src="../assets/js/loadPage.js"></script>
+<script src="../assets/ajax/loadPage.js"></script>
 <script src="../assets/js/jquery-migrate-1.0.0.min.js"></script>
 
 <script src="../assets/js/jquery-ui-1.10.0.custom.min.js"></script>

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: admin
-  Date: 2018/3/6
-  Time: 20:41
+  Date: 2018/3/8
+  Time: 22:03
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -42,7 +42,7 @@
 <!--/.fluid-container-->
 <!-- start: JavaScript-->
 <script src="../assets/ajax/ajaxfileupload.js"></script>
-<script src="../assets/ajax/productUp.js"></script>
+<script src="../assets/ajax/userUp.js"></script>
 <!-- end: JavaScript-->
 
 </body>

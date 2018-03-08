@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by admin on 2018/1/15.
@@ -63,4 +62,10 @@ public class AdminService {
     public FruitCategory getFruitById(int id){
         return adminMapper.getFruitById(id);
     }
+    //更新产品信息
+    public int updateFruit(FruitCategory fruitCategory){
+        return adminMapper.updateFruit(fruitCategory);
+    }
+
+
 }

@@ -26,4 +26,18 @@ public class PageController {
         return "productUp";
     }
 
+    @RequestMapping("/userSearch")
+    public  String userSearch(){
+        return "userSearch";
+    }
+
+    @RequestMapping("/orderSearch")
+    public String orderSearch(){
+        return "orderSearch";
+    }
+
+    @RequestMapping("/walletSearch")
+    public String walletSearch(){
+        return "walletSearch";
+    }
 }

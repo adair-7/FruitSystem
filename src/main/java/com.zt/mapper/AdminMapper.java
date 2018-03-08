@@ -32,4 +32,6 @@ public interface AdminMapper {
     public int getTotalRows(String name);
     //
     public  FruitCategory getFruitById( int id);
+    //产品信息更新
+    public int updateFruit(FruitCategory fruitCategory);
 }
