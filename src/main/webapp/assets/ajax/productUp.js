@@ -34,7 +34,7 @@ $(function () {
 
     //提交
     btn_sub.click(function () {
-        name=txt_name.text();
+        name=txt_name.val();
         unitPrice=txt_price.val();
         introduction=txt_introduction.val();
         $.ajaxFileUpload({

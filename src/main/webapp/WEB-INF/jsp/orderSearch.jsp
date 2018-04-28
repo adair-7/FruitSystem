@@ -29,22 +29,25 @@
         <a href="../Admin/goIndex">主页</a>
         <i class="icon-angle-right"></i>
     </li>
-    <li><a>订单查询</a></li>
+    <li><a>订单管理</a></li>
 </ul>
 
 <div>
     <form>
         <div class="input-group">
-            <input type="text" class="form-control" id="fruit_name"/>
-            <a href="#" class="btn btn-primary" id="fruit_search">搜索</a>
+            <input type="text" class="form-control" id="user_name" placeholder="用户名称" />
+            <a href="#" class="btn btn-primary" id="user_search">搜索</a>
         </div>
 
         <table class="table table-hover">
             <thead>
             <tr>
+                <th>订单编号</th>
                 <th>水果名称</th>
-                <th>水果价格</th>
-                <th>介绍</th>
+                <th>用户名称</th>
+                <th>订单数量</th>
+                <th>订单价格</th>
+                <th>订单日期</th>
             </tr>
             </thead>
             <tbody id="tableBody">
@@ -52,16 +55,6 @@
             </tbody>
         </table>
         <ul class="pager" id="pageNum">
-            <li><a href="#" id="pre">上一页</a></li>
-            <li ><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">...</a></li>
-            <li><a href="#">12</a></li>
-            <li><a href="#">13</a></li>
-            <li><a href="#" id="next">下一页</a></li>
         </ul>
 
     </form>

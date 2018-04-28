@@ -8,6 +8,9 @@
         SELECT * FROM admin WHERE adminName=#{name}
     </select>
 
+    <!--
+    水果管理
+    -->
     <insert id="addProduct" parameterType="FruitCategory">
         INSERT INTO fruit_category(fruitName,unitPrice,introduction,iconUrl)VALUES (#{fruitName},#{unitPrice},#{introduction},#{iconUrl})
     </insert>
@@ -16,25 +19,16 @@
         SELECT * FROM fruit_category WHERE fruitName=#{name}
     </select>
 
+
+    <!--查询水果总数-->
+    <select id="getAllfruitCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM fruit_category
+    </select>
     <!--分页查询所有水果-->
     <select id="getAllFruitByPage" parameterType="java.lang.Integer" resultType="FruitCategory">
         SELECT  * FROM  fruit_category
          limit #{beginRow},#{pageSize}
     </select>
-    <!--查询水果总数-->
-    <select id="getAllfruitCount" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM fruit_category
-    </select>
-    <!--模糊查询-->
-    <select id="getFruitByKey" parameterType="java.lang.String" resultType="FruitCategory">
-        SELECT * FROM fruit_category
-        <where>
-            <if test="_parameter!=null">
-                AND fruitName LIKE "%"#{_parameter}"%"
-            </if>
-        </where>
-    </select>
-
     <!--分页模糊查询-->
     <select id="getFruitByPage" parameterType="java.lang.String" resultType="FruitCategory">
         SELECT * FROM fruit_category
@@ -45,8 +39,8 @@
         </where>
         limit #{beginRow},#{pageSize}
     </select>
-    <!--查询分页总行数-->
-    <select id="getTotalRows" parameterType="java.lang.String" resultType="java.lang.Integer">
+    <!--查询分页总条数-->
+    <select id="getFruitRows" parameterType="java.lang.String" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM fruit_category
         <where>
             <if test="_parameter!=null">
@@ -62,4 +56,159 @@
     <update id="updateFruit" parameterType="FruitCategory">
         UPDATE fruit_category SET unitPrice=#{unitPrice},introduction=#{introduction},iconUrl=#{iconUrl} WHERE fruitName=#{fruitName}
     </update>
+
+    <delete id="delFruit" parameterType="java.lang.Integer">
+        DELETE FROM fruit_category WHERE fruitId=#{fruitId}
+    </delete>
+
+    <!--
+    用户管理
+    -->
+    <!--查询用户总数-->
+    <select id="getUserCount" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM user
+    </select>
+    <!--分页查询所有用户-->
+    <select id="getAllUserByPage" resultType="User" parameterType="java.lang.Integer">
+        SELECT * FROM user
+        limit #{beginRow},#{pageSize}
+    </select>
+    <!--分页模糊查询用户-->
+    <select id="getUserByPage" resultType="User">
+        SELECT * FROM user
+        <where>
+            <if test="name!=null">
+                AND userName LIKE "%"#{name}"%"
+            </if>
+        </where>
+        limit #{beginRow},#{pageSize}
+    </select>
+    <!--查询分页总数 -->
+    <select id="getUserRows" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM user
+        <where>
+            <if test="_parameter!=null">
+                AND userName LIKE "%"#{_parameter}"%"
+            </if>
+        </where>
+    </select>
+    <!--根据ID查询用户-->
+    <select id="getUserById" resultType="User" parameterType="java.lang.Integer" >
+        SELECT * FROM user WHERE userId=#{userId}
+    </select>
+
+
+
+    <!--
+    钱包管理
+    -->
+    <!--查询钱包总数-->
+    <select id="getWalletCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM wallet
+    </select>
+    <!--分页查询钱包-->
+    <select id="getAllWalletByPage" resultType="Wallet" parameterType="java.lang.Integer">
+        SELECT * FROM wallet
+        limit #{beginRow},#{pageSize}
+    </select>
+    <!--查询分页总条数-->
+    <select id="getWalletRows" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM wallet
+        <where>
+            <if test="_parameter!=null">
+                AND userName LIKE "%"#{_parameter}"%"
+            </if>
+        </where>
+    </select>
+    <!--分页模糊查询钱包-->
+    <select id="getWalletByPage" resultType="Wallet">
+        SELECT * FROM wallet
+        <where>
+            <if test="name!=null">
+                AND userName LIKE "%"#{name}"%"
+            </if>
+        </where>
+        limit #{beginRow},#{pageSize}
+    </select>
+    <!--根据ID查询-->
+    <select id="getWalletById" resultType="Wallet">
+        SELECT * FROM wallet WHERE walletId=#{walletId}
+    </select>
+
+    <!--
+      库存管理
+    -->
+    <!--查询库存总数-->
+    <select id="getStockCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM fruit_stock
+    </select>
+    <!--分页查询库存-->
+    <select id="getAllStockByPage" resultType="FruitStock" parameterType="java.lang.Integer">
+        SELECT * FROM fruit_stock
+        limit #{beginRow},#{pageSize}
+    </select>
+    <!--查询分页总条数-->
+    <select id="getStockRows" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM fruit_stock
+        <where>
+            <if test="_parameter!=null">
+                AND fruitName LIKE "%"#{_parameter}"%"
+            </if>
+        </where>
+    </select>
+    <!--分页模糊查询库存-->
+    <select id="getStockByPage" resultType="FruitStock">
+        SELECT * FROM fruit_stock
+        <where>
+            <if test="name!=null">
+                AND fruitName LIKE "%"#{name}"%"
+            </if>
+        </where>
+        limit #{beginRow},#{pageSize}
+    </select>
+    <!--根据ID查询库存-->
+    <select id="getStockById" resultType="FruitStock">
+        SELECT * FROM fruit_stock WHERE fruitId=#{fruitId}
+    </select>
+    <!--库存更新-->
+    <update id="updataStock" parameterType="FruitStock">
+        UPDATE fruit_stock SET stockTop=#{stockTop},stockAccount=#{stockAccount} WHERE fruitId=#{fruitId}
+    </update>
+
+    <!--
+    订单管理
+    -->
+    <!--查询订单总数-->
+    <select id="getOrderCount" resultType="java.lang.Integer" >
+        SELECT COUNT(*) FROM orders
+    </select>
+    <!--分页查询所有订单-->
+    <select id="getAllOrderByPage" resultType="Order" parameterType="java.lang.Integer">
+        SELECT * FROM orders
+        limit #{beginRow},#{pageSize}
+    </select>
+    <!--分页模糊查询订单-->
+    <select id="getOrderByPage" resultType="Order">
+        SELECT * FROM orders
+        <where>
+            <if test="name!=null">
+                AND userName LIKE "%"#{name}"%"
+            </if>
+        </where>
+        limit #{beginRow},#{pageSize}
+    </select>
+    <!--查询分页总数 -->
+    <select id="getOrderRows" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM orders
+        <where>
+            <if test="_parameter!=null">
+                AND userName LIKE "%"#{_parameter}"%"
+            </if>
+        </where>
+    </select>
+
+    <delete id="delOrder" parameterType="java.lang.Integer">
+        DELETE FROM orders WHERE orderId=#{orderId}
+    </delete>
+
 </mapper>

@@ -17,201 +17,227 @@
     <table id="11" parent="2" name="admin"/>
     <table id="12" parent="2" name="fruit_category"/>
     <table id="13" parent="2" name="fruit_stock"/>
-    <table id="14" parent="2" name="order"/>
-    <table id="15" parent="2" name="user"/>
-    <table id="16" parent="2" name="wallet"/>
-    <column id="17" parent="11" name="adminId">
+    <table id="14" parent="2" name="orders"/>
+    <table id="15" parent="2" name="recommender"/>
+    <table id="16" parent="2" name="user"/>
+    <table id="17" parent="2" name="wallet"/>
+    <column id="18" parent="11" name="adminId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="18" parent="11" name="adminName">
+    <column id="19" parent="11" name="adminName">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="19" parent="11" name="adminPwd">
+    <column id="20" parent="11" name="adminPwd">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="20" parent="11" name="PRIMARY">
+    <key id="21" parent="11" name="PRIMARY">
       <ColNames>adminId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="21" parent="12" name="fruitId">
+    <column id="22" parent="12" name="fruitId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="22" parent="12" name="fruitName">
+    <column id="23" parent="12" name="fruitName">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="23" parent="12" name="unitPrice">
+    <column id="24" parent="12" name="unitPrice">
       <Position>3</Position>
       <DataType>decimal(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="24" parent="12" name="introduction">
+    <column id="25" parent="12" name="introduction">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="25" parent="12" name="iconUrl">
+    <column id="26" parent="12" name="iconUrl">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="26" parent="12" name="PRIMARY">
+    <key id="27" parent="12" name="PRIMARY">
       <ColNames>fruitId</ColNames>
       <Primary>1</Primary>
     </key>
-    <trigger id="27" parent="12" name="t_insertFruit">
+    <trigger id="28" parent="12" name="t_insertFruit">
       <Turn>after-row</Turn>
       <Events>I</Events>
     </trigger>
-    <trigger id="28" parent="12" name="t_deleteFruit">
+    <trigger id="29" parent="12" name="t_deleteFruit">
       <Turn>after-row</Turn>
       <Events>D</Events>
     </trigger>
-    <column id="29" parent="13" name="fruitId">
+    <column id="30" parent="13" name="fruitId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="30" parent="13" name="stockTop">
+    <column id="31" parent="13" name="stockTop">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;255&apos;</DefaultExpression>
     </column>
-    <column id="31" parent="13" name="stockAccount">
+    <column id="32" parent="13" name="stockAccount">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="32" parent="13" name="fruitName">
+    <column id="33" parent="13" name="fruitName">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="14" name="orderId">
+    <column id="34" parent="14" name="orderId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="34" parent="14" name="userId">
-      <Position>2</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="35" parent="14" name="fruitId">
+    <column id="35" parent="14" name="userName">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="36" parent="14" name="fruitName">
-      <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="37" parent="14" name="fruitNum">
-      <Position>6</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="38" parent="14" name="orderPrice">
-      <Position>7</Position>
-      <DataType>decimal(10)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="39" parent="14" name="orderDate">
+    <column id="36" parent="14" name="fruitName">
       <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="37" parent="14" name="orderDate">
+      <Position>6</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <key id="40" parent="14" name="PRIMARY">
+    <column id="38" parent="14" name="fruitNum">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="14" name="orderPrice">
+      <Position>8</Position>
+      <DataType>decimal(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="14" name="userId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="14" name="fruitId">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="42" parent="14" name="PRIMARY">
       <ColNames>orderId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="41" parent="15" name="userId">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="42" parent="15" name="userName">
-      <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="43" parent="15" name="userPwd">
-      <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="44" parent="15" name="phone">
-      <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="45" parent="15" name="mail">
-      <Position>5</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="46" parent="15" name="qq">
-      <Position>6</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="47" parent="15" name="address">
-      <Position>7</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="48" parent="15" name="PRIMARY">
-      <ColNames>userId</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <trigger id="49" parent="15" name="t_insertWallet">
+    <trigger id="43" parent="14" name="t_insertOrder">
       <Turn>after-row</Turn>
       <Events>I</Events>
     </trigger>
-    <trigger id="50" parent="15" name="t_deleteWallet">
-      <Turn>after-row</Turn>
-      <Events>D</Events>
-    </trigger>
-    <column id="51" parent="16" name="walletId">
+    <column id="44" parent="15" name="userId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="15" name="fruitId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="15" name="fruitNum">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="47" parent="16" name="userId">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="52" parent="16" name="userId">
+    <column id="48" parent="16" name="userName">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="53" parent="16" name="userName">
+    <column id="49" parent="16" name="userPwd">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="54" parent="16" name="walletPwd">
+    <column id="50" parent="16" name="phone">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="55" parent="16" name="amount">
+    <column id="51" parent="16" name="mail">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="16" name="qq">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="16" name="address">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="54" parent="16" name="PRIMARY">
+      <ColNames>userId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <trigger id="55" parent="16" name="t_insertWallet">
+      <Turn>after-row</Turn>
+      <Events>I</Events>
+    </trigger>
+    <trigger id="56" parent="16" name="t_deleteWallet">
+      <Turn>after-row</Turn>
+      <Events>D</Events>
+    </trigger>
+    <column id="57" parent="17" name="walletId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="58" parent="17" name="userId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="17" name="userName">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="17" name="walletPwd">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="61" parent="17" name="amount">
       <Position>5</Position>
       <DataType>decimal(10)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="56" parent="16" name="PRIMARY">
+    <key id="62" parent="17" name="PRIMARY">
       <ColNames>walletId</ColNames>
       <Primary>1</Primary>
     </key>

@@ -15,5 +15,78 @@
     <insert id="addUser" parameterType="User"  >
         INSERT INTO user(userName, userPwd, phone, mail, qq, address) VALUES (#{userName},#{userPwd},#{phone},#{mail},#{qq},#{address})
     </insert>
-    
+
+    <select id="getFruitPrice" parameterType="java.lang.String" resultType="java.lang.Float">
+        SELECT unitPrice FROM fruit_category WHERE fruitName=#{fruitName}
+    </select>
+
+    <insert id="addOrder" parameterType="Order">
+        INSERT INTO orders(userId,fruitId,userName,fruitName,fruitNum,orderPrice) VALUES (#{userId},#{fruitId},#{userName},#{fruitName},#{fruitNum},#{orderPrice})
+    </insert>
+
+    <select id="getUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT userId FROM user WHERE userName=#{userName}
+    </select>
+
+    <select id="getFruitId" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT fruitId FROM fruit_category WHERE fruitName=#{fruitName}
+    </select>
+
+    <select id="getWalletAccount" parameterType="java.lang.String" resultType="java.lang.Float">
+        SELECT amount FROM wallet WHERE userName=#{userName}
+    </select>
+
+    <update id="upWalletAccount" parameterType="Wallet">
+        UPDATE wallet SET amount=#{amount} WHERE userName=#{userName}
+    </update>
+
+    <select id="getStockByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT stockAccount FROM fruit_stock WHERE fruitName=#{fruitName}
+    </select>
+
+    <update id="upStockByName" parameterType="FruitStock">
+        UPDATE fruit_stock SET stockAccount=#{stockAccount} WHERE fruitName=#{fruitName}
+    </update>
+
+
+    <update id="upUserByName" parameterType="User">
+        UPDATE user SET phone=#{phone},mail=#{mail},qq=#{qq},address=#{address} WHERE userName=#{userName}
+    </update>
+
+    <select id="getAllFruit" resultType="FruitCategory">
+        SELECT * FROM fruit_category ORDER BY fruitId ASC
+    </select>
+
+    <select id="getOrderCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM orders WHERE userId=#{userId} AND fruitId=#{fruitId}
+    </select>
+
+    <select id="getAllUser" resultType="User">
+        SELECT * FROM user ORDER BY userId ASC
+    </select>
+
+    <select id="getFruitById" resultType="FruitCategory">
+        SELECT * FROM fruit_category WHERE fruitId=#{fruidId}
+    </select>
+
+    <select id="getUserCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) AS userCount FROM (SELECT DISTINCT userId FROM recommender)AS temp
+    </select>
+
+    <select id="getUserByAsc" resultType="Recommend">
+        SELECT * FROM recommender GROUP BY userId ORDER BY userId ASC
+    </select>
+
+    <select id="getFruitByAsc" resultType="Recommend" parameterType="java.lang.Integer">
+        SELECT * FROM recommender WHERE userId=#{userId} GROUP BY fruitId ORDER BY fruitId ASC
+    </select>
+
+    <select id="getTopFruit" parameterType="java.lang.Integer" resultType="Recommend">
+        SELECT userId,fruitId,COUNT(*) FROM recommender GROUP BY fruitId ORDER BY COUNT(*) DESC LIMIT #{dataSize}
+    </select>
+
+    <select id="getAllOrder" parameterType="java.lang.String" resultType="Order">
+        SELECT * FROM orders WHERE userName=#{userName}
+    </select>
+
 </mapper>

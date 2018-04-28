@@ -80,6 +80,7 @@
                     <li><a id="user" href="#"><i class="icon-tasks"></i><span class="hidden-tablet"> 用户管理</span></a></li>
                     <li><a id="wallet" href="#"><i class="icon-eye-open"></i><span class="hidden-tablet"> 钱包管理</span></a></li>
                     <li><a id="order" href="#"><i class="icon-dashboard"></i><span class="hidden-tablet"> 订单管理</span></a></li>
+                    <li><a id="stock" href="#"><i class="icon-eye-open"></i><span class="hidden-tablet"> 库存管理</span></a></li>
                 </ul>
             </div>
         </div>

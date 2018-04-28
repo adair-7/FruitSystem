@@ -47,9 +47,6 @@
                         </div>
                         <button type="button" class="btn btn-info btn-block" id="btn_login">登&nbsp;录</button>
                     </fieldset>
-                    <div class="form-group pull-right">
-                        <small>没有账户？<a href="regist.html" data-toggle='tooltip' data-original-title='点击注册' data-placement='bottom'>立即注册</a></small>
-                    </div>
                 </form>
             </div>
         </div>

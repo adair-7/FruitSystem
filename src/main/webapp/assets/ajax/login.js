@@ -11,28 +11,7 @@ $(function(){
     var tip_pwd=$("#tip_pwd");
     var group_user=$("#group_user");
     var group_pwd=$("#group_pwd");
-    txt_user.focus(function(){
-        tip_user.text('请输入账号').css('color','#09f');
-        group_user.removeClass('has-error');
-    });
-    txt_user.blur(function(){
-        tip_user.text('');
-        if($(this).val()==''){
-            group_user.addClass('has-error');
-            tip_user.text('此项为必填项').css('color','#900');
-        }
-    })
-    txt_pwd.focus(function(){
-        tip_pwd.text('请输入密码').css('color','#09f');
-        group_pwd.removeClass('has-error');
-    });
-    txt_pwd.blur(function(){
-        tip_pwd.text('');
-        if($(this).val()==''){
-            group_pwd.addClass('has-error');
-            tip_pwd.text('此项为必填项').css('color','#900');
-        }
-    })
+
     btn_login.click(function () {
         var name=txt_user.val();
         var pwd=txt_pwd.val();

@@ -24,17 +24,17 @@
         <a href="../Admin/goIndex">主页</a>
         <i class="icon-angle-right"></i>
     </li>
-    <li><a>产品更新</a></li>
+    <li><a>用户信息</a></li>
 </ul>
 
 <div>
     <form enctype="multipart/form-data">
-        水果名称：<label id="fruitName">${fruit.fruitName}</label> <br>
-        水果单价：<input type="text" id="unitPrice" value="${fruit.unitPrice} "/><br>
-        相关简介：<textarea id="introduction" rows="10">${fruit.introduction}</textarea><br>
-        图片：<img src="${fruit.iconUrl}" style="width: 200px;height: auto;" id="img"><br>
-        <input type="file" id="file"  name="file" /><br>
-        <button type="button" id="submit" class="btn btn-primary">确认修改</button>
+        用户姓名：<input type="text" disabled="disabled" id="userName" value="${user.userName}" style="width: 300px;"><br>
+        用户电话：<input type="text" disabled="disabled"  id="phone" value="${user.phone} " style="width: 300px;"/><br>
+        用户邮箱：<input type="text" disabled="disabled" id="mail" value="${user.mail} " style="width: 300px;"/><br>
+        用户地址：<input type="text" disabled="disabled"  id="address" value="${user.address} " style="width: 300px;"/><br>
+        用户 QQ ：<input type="text" disabled="disabled"  id="qq" value="${user.qq} " style="width: 300px;"/><br>
+        <button type="button" id="submit" class="btn btn-primary" style="margin-top: 50px;">返回</button>
     </form>
 
 </div>

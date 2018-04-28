@@ -1,12 +1,11 @@
 package com.zt.service;
 
-import com.zt.entity.User;
-import com.zt.entity.Wallet;
+import com.zt.entity.*;
 import com.zt.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by admin on 2018/1/20.
@@ -36,5 +35,72 @@ public class UserService {
 
     public int addUser(User user){
         return userMapper.addUser(user);
+    }
+
+    public float getFruitPrice(String fruitName){
+        return userMapper.getFruitPrice(fruitName);
+    }
+
+    public  int addOrder(Order order){
+        return userMapper.addOrder(order);
+    }
+
+    public int getUserId(String userName){
+        return userMapper.getUserId(userName);
+    }
+
+    public int getFruitId(String fruitName){
+        return userMapper.getFruitId(fruitName);
+    }
+
+    public float getWalletAccount(String userName){
+        return userMapper.getWalletAccount(userName);
+    }
+
+    public int upWalletAccount(Wallet wallet){
+        return userMapper.upWalletAccount(wallet);
+    }
+
+    public int getStockByName(String fruitName){
+        return userMapper.getStockByName(fruitName);
+    }
+
+    public int upStockByName(FruitStock fruitStock){
+        return userMapper.upStockByName(fruitStock);
+    }
+    public int upUserByName(User user){
+        return userMapper.upUserByName(user);
+    }
+
+    public List<FruitCategory> getAllFruit(){
+        return userMapper.getAllFruit();
+    }
+
+    public int getOrderCount(int userId,int fruitId){
+        return userMapper.getOrderCount(userId,fruitId);
+    }
+
+    public FruitCategory getFruitById(int fruitId){
+        return userMapper.getFruitById(fruitId);
+    }
+
+    public int getUserCount(){
+        return userMapper.getUserCount();
+    }
+
+    public List<Recommend> getUserByAsc(){
+        return userMapper.getUserByAsc();
+    }
+
+    public List<Recommend> getFruitByAsc(int userId){
+        return userMapper.getFruitByAsc(userId);
+    }
+
+    public List<Recommend> getTopFruit(int dataSize){
+        return userMapper.getTopFruit(dataSize);
+    }
+
+    public List<Order> getAllOrder(String userName){
+        return userMapper.getAllOrder(userName);
     }
 }

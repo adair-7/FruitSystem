@@ -21,11 +21,6 @@ public class PageController {
         return  "productSearch";
     }
 
-    @RequestMapping("/productUp")
-    public String productUp(){
-        return "productUp";
-    }
-
     @RequestMapping("/userSearch")
     public  String userSearch(){
         return "userSearch";
@@ -39,5 +34,10 @@ public class PageController {
     @RequestMapping("/walletSearch")
     public String walletSearch(){
         return "walletSearch";
+    }
+
+    @RequestMapping("/stockSearch")
+    public String stockSearch(){
+        return "stockSearch";
     }
 }

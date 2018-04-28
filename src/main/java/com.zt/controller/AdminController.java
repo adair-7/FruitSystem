@@ -1,9 +1,7 @@
 package com.zt.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zt.entity.Admin;
-import com.zt.entity.FruitCategory;
-import com.zt.entity.Pagination;
+import com.zt.entity.*;
 import com.zt.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +26,6 @@ import java.util.*;
 public class AdminController {
     @Autowired
     private AdminService adminService;
-
     /*
     * Response ModelAndView
     * */
@@ -63,6 +60,33 @@ public class AdminController {
         return  modelAndView;
     }
 
+    //用户查看
+    @RequestMapping("/{id}/userUp")
+    public ModelAndView userUp(@PathVariable int id){
+        ModelAndView modelAndView=new ModelAndView("userUp");
+        User user=adminService.getUserById(id);
+        modelAndView.addObject("user",user);
+        return modelAndView;
+    }
+
+    //库存更新
+    @RequestMapping("/{id}/stockUp")
+    public ModelAndView stockUp(@PathVariable int id){
+        ModelAndView modelAndView=new ModelAndView("stockUp");
+        FruitStock fruitStock=adminService.getStockById(id);
+        modelAndView.addObject("stock",fruitStock);
+        return modelAndView;
+    }
+
+    //钱包查看
+    @RequestMapping("/{id}/walletUp")
+    public ModelAndView walletUp(@PathVariable int id){
+        ModelAndView modelAndView=new ModelAndView("walletUp");
+        Wallet wallet=adminService.getWalletById(id);
+        modelAndView.addObject("wallet",wallet);
+        return modelAndView;
+    }
+
     /*
     * ResponseBody
     * */
@@ -91,7 +115,7 @@ public class AdminController {
         }else if (fruitCategory==null){ //水果种类不存在
             //上传图片
             //文件保存在数据库的路径
-            String sqlPath="../assets/images/"+getFileName(file);
+            String sqlPath="upload/"+getFileName(file);
 
             FruitCategory fruitCategory1=new FruitCategory();
             fruitCategory1.setFruitName(fruitName);
@@ -124,7 +148,7 @@ public class AdminController {
             map.put("data",fruitCategories);
             map.put("flag",true);
         }else {
-            Pagination pagination=new Pagination(pageIndex,pageSize,adminService.getTotalRows(name));
+            Pagination pagination=new Pagination(pageIndex,pageSize,adminService.getFruitRows(name));
             map.put("page",pagination);
             List<FruitCategory> fruitCategories=adminService.getFruitByPage(name,pagination.getBeginRow(),pageSize);
             map.put("data",fruitCategories);
@@ -138,7 +162,7 @@ public class AdminController {
     @ResponseBody
     public Map<String,Object> productUp(String fruitName,String introduction,String unitPrice,MultipartFile file,HttpServletRequest request) throws IOException {
         Map<String,Object> map=new HashMap<String, Object>();
-        String sqlPath="../assets/images/"+getFileName(file);
+        String sqlPath="upload/"+getFileName(file);
         FruitCategory fruitCategory=new FruitCategory();
         fruitCategory.setFruitName(fruitName);
         fruitCategory.setUnitPrice(Float.parseFloat(unitPrice));
@@ -156,18 +180,153 @@ public class AdminController {
         }
         return map;
     }
+
+    //产品删除
+    @RequestMapping("/productDel")
+    @ResponseBody
+    public Map<String,Object> productDel(int fruitId,HttpServletRequest request){
+        Map<String,Object> map=new HashMap<String, Object>();
+        int code=adminService.delFruit(fruitId);
+        if (code==1){
+            map.put("code",code);
+            map.put("msg","success");
+            map.put("flag",true);
+        }
+        else {
+            map.put("code",code);
+            map.put("msg","fail");
+            map.put("flag",false);
+        }
+        return map;
+    }
+
     //用户查询
     @RequestMapping("/quaryUser")
     @ResponseBody
     public Map<String,Object> quaryUser(int pageIndex,int pageSize,String name,HttpServletRequest request ){
         Map<String,Object> map=new HashMap<String, Object>();
         if ("".equals(name)){
-
+            Pagination pagination=new Pagination(pageIndex,pageSize,adminService.getUserCount());
+            map.put("page",pagination);
+            List<User> users=adminService.getAllUserByPage(pagination.getBeginRow(),pageSize);
+            map.put("data",users);
+            map.put("flag",true);
         }else {
+            Pagination pagination=new Pagination(pageIndex,pageSize,adminService.getUserRows(name));
+            map.put("page",pagination);
+            List<User> users=adminService.getUserByPage(name,pagination.getBeginRow(),pageSize);
+            map.put("data",users);
+            map.put("flag",true);
+        }
+        return map;
+    }
+
+    //钱包查询
+    @RequestMapping("/quaryWallet")
+    @ResponseBody
+    public Map<String,Object> quaryWallet(int pageIndex,int pageSize,String name,HttpServletRequest request){
+        Map<String,Object> map=new HashMap<String, Object>();
+        if ("".equals(name)){
+            Pagination pagination=new Pagination(pageIndex,pageSize,adminService.getWalletCount());
+            map.put("page",pagination);
+            List<Wallet> wallets=adminService.getAllWalletByPage(pagination.getBeginRow(),pageSize);
+            map.put("data",wallets);
+            map.put("flag",true);
+        }else {
+            Pagination pagination=new Pagination(pageIndex,pageSize,adminService.getWalletRows(name));
+            map.put("page",pagination);
+            List<Wallet> wallets=adminService.getWalletByPage(name,pagination.getBeginRow(),pageSize);
+            map.put("data",wallets);
+            map.put("flag",true);
 
         }
         return map;
     }
+
+    //库存查询
+    @RequestMapping("/quaryStock")
+    @ResponseBody
+    public Map<String,Object> quaryStock(int pageIndex,int pageSize,String name,HttpServletRequest request){
+        Map<String,Object> map=new HashMap<String, Object>();
+        if ("".equals(name)){
+            Pagination pagination=new Pagination(pageIndex,pageSize,adminService.getStockCount());
+            map.put("page",pagination);
+            List<FruitStock> fruitStocks=adminService.getAllStockByPage(pagination.getBeginRow(),pageSize);
+            map.put("data",fruitStocks);
+            map.put("flag",true);
+        }else {
+            Pagination pagination=new Pagination(pageIndex,pageSize,adminService.getStockRows(name));
+            map.put("page",pagination);
+            List<FruitStock> fruitStocks=adminService.getStockByPage(name,pagination.getBeginRow(),pageSize);
+            map.put("data",fruitStocks);
+            map.put("flag",true);
+
+        }
+        return map;
+    }
+
+    //库存更新
+    @RequestMapping("/stockUp")
+    @ResponseBody
+    public Map<String,Object> stockUp(int fruitId,int stockTop,int stockAccount,HttpServletRequest request){
+        Map<String,Object>map=new HashMap<String, Object>();
+        FruitStock fruitStock=new FruitStock();
+        fruitStock.setFruitId(fruitId);
+        fruitStock.setStockTop(stockTop);
+        fruitStock.setStockAccount(stockAccount);
+        int code=adminService.updataStock(fruitStock);
+        if (code>0){
+            map.put("code",code);
+            map.put("msg","success");
+            map.put("flag",true);
+        }else {
+            map.put("code", code);
+            map.put("msg", "failed");
+            map.put("flag", false);
+        }
+        return map;
+    }
+
+    //订单查询
+    @RequestMapping("/quaryOrder")
+    @ResponseBody
+    public Map<String,Object> queryOrder(int pageIndex,int pageSize,String name,HttpServletRequest request ){
+        Map<String,Object> map=new HashMap<String, Object>();
+        if ("".equals(name)){
+            Pagination pagination=new Pagination(pageIndex,pageSize,adminService.getOrderCount());
+            map.put("page",pagination);
+            List<Order> orders=adminService.getAllOrderByPage(pagination.getBeginRow(),pageSize);
+            map.put("data",orders);
+            map.put("flag",true);
+        }else {
+            Pagination pagination=new Pagination(pageIndex,pageSize,adminService.getOrderRows(name));
+            map.put("page",pagination);
+            List<Order> orders=adminService.getOrderByPage(name,pagination.getBeginRow(),pageSize);
+            map.put("data",orders);
+            map.put("flag",true);
+        }
+        return map;
+    }
+
+    //订单删除
+    @RequestMapping("/orderDel")
+    @ResponseBody
+    public Map<String,Object> orderDel(int orderId,HttpServletRequest request){
+        Map<String,Object> map=new HashMap<String, Object>();
+        int code=adminService.delOrder(orderId);
+        if (code==1){
+            map.put("code",code);
+            map.put("msg","success");
+            map.put("flag",true);
+        }
+        else {
+            map.put("code",code);
+            map.put("msg","fail");
+            map.put("flag",false);
+        }
+        return map;
+    }
+
 
     /*
     * method
@@ -175,8 +334,8 @@ public class AdminController {
     * */
     public String getFileName(MultipartFile file) throws IOException {
         //文件保存在本地的路径
-        String localPath="G:\\FruitSystem\\src\\main\\webapp\\assets\\images\\";
         //文件名
+        String localPath = "G:\\upload\\";
         String filename=null;
         if (!file.isEmpty()){
             //生成uuid作为文件名称
